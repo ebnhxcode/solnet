@@ -6,7 +6,9 @@ import {
     NavController
 } from 'ionic-angular';
 import { UserService } from '../../services/mocks/user.service';
-import { Http } from '@angular/http';
+import { Http, /*Response*/ } from '@angular/http';
+
+
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,7 +16,7 @@ import 'rxjs/add/operator/catch';
 
 @Component({
 	selector: 'page-login',
-	templateUrl: 'login.html'
+	templateUrl: 'login.html',
 })
 export class LoginPage{
 
@@ -25,41 +27,55 @@ export class LoginPage{
         public loadingCtrl: LoadingController,
         public navCtrl: NavController,
         private userService:UserService,
-        public http: Http,
+        private http: Http,
     ){
-        this.http = http;
+        //this.http = http;
+
+        let url: string = 'https://jsonplaceholder.typicode.com/posts';
+
+        //Opcion 1
+        this.http.get(url)
+        .map(res => res.json())
+        .subscribe(data => {
+            console.log(data);
+        });
+
+        /*
+        this.http.post('http://localhost:3001/sessions/create', body, { headers: headers })
+        .map(response => response.json())
+        .subscribe(
+          response => this.storeToken(response.id_token),
+          this.logError,
+          () => console.log('Authentication Complete')
+        );
+        */
+
+        //Opcion 2
+        /*
+        this.http.get(url)
+        .do(res => res.json()).
+        subscribe(data => {
+            console.log(data)
+        });
+        */
     }
 
     ngOnInit(){
-        //console.log("arranco el init");
-/*
-    this.http
-    .post('http://localhost:3001/sessions/create', body, { headers: headers })
-    .map(response => response.json())
-    .subscribe(
-      response => this.storeToken(response.id_token),
-      this.logError,
-      () => console.log('Authentication Complete')
-    );
-*/
-        this.http
-        .get('https://jsonplaceholder.typicode.com/posts')
-        .map(response => {
-            console.log(response.json());
-        });
+        console.log("arranco el init");
+
+
+
+
     }
 
 	login = ():void=>{
         if (this.user.email != "" && this.user.password != ""){
             
             let usuarios;
-
-
             let loading = this.loadingCtrl.create({
                 content: 'Please wait...'
             });
             loading.present();
-
             let login:false;
             this.userService
                 .loginUser(this.user.email, this.user.password)
@@ -77,11 +93,13 @@ export class LoginPage{
                             alert.present();
                         }
                     }
-                )
+                );
 
+           
 
             
         }else{
+
             let alert = this.alertCtrl.create({
                     title: 'Login',
                     subTitle: 'Complete los campos',

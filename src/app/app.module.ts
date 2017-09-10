@@ -17,6 +17,7 @@ import { UserService } from '../services/mocks/user.service';
 
 //import { Http, Headers,Response, RequestOptions, HttpModule } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
 //refactor por router
 
@@ -57,7 +58,7 @@ var links = [
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserService,
-
-  ]
+    RemoteServiceProvider,
+      ]
 })
 export class AppModule {}
