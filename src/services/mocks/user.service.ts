@@ -5,6 +5,8 @@ import { USERS } from './user';
 @Injectable()
 export class UserService{
 
+  
+
 	getUsers():Promise<User[]>{
 		console.log("entramos al promise");
 		return Promise.resolve(USERS); //en USER PUEDE ESTA NUESTRA URL
@@ -13,8 +15,8 @@ export class UserService{
 	loginUser(email,password):Promise<User>{
 		let user:User;
 		user = this.find(email, password);
-		console.log(user);
 		return Promise.resolve(user);
+
 	}
 
 	find(email, password):User{

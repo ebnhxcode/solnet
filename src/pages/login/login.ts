@@ -6,6 +6,11 @@ import {
     NavController
 } from 'ionic-angular';
 import { UserService } from '../../services/mocks/user.service';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 
 @Component({
 	selector: 'page-login',
@@ -19,13 +24,29 @@ export class LoginPage{
         private alertCtrl: AlertController, 
         public loadingCtrl: LoadingController,
         public navCtrl: NavController,
-        private userService:UserService
-        ) {
+        private userService:UserService,
+        public http: Http,
+    ){
+        this.http = http;
     }
 
     ngOnInit(){
-        console.log("arranco el init");
-        //si el usuario esta logueado redireccionar a la home
+        //console.log("arranco el init");
+/*
+    this.http
+    .post('http://localhost:3001/sessions/create', body, { headers: headers })
+    .map(response => response.json())
+    .subscribe(
+      response => this.storeToken(response.id_token),
+      this.logError,
+      () => console.log('Authentication Complete')
+    );
+*/
+        this.http
+        .get('https://jsonplaceholder.typicode.com/posts')
+        .map(response => {
+            console.log(response.json());
+        });
     }
 
 	login = ():void=>{

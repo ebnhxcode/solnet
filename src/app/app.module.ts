@@ -15,6 +15,9 @@ import { Fav } from '../components/fav/fav';
 
 import { UserService } from '../services/mocks/user.service';
 
+//import { Http, Headers,Response, RequestOptions, HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
+
 //refactor por router
 
 var links = [
@@ -32,10 +35,10 @@ var links = [
     TabsPage,
     LoginPage,
     VerNotificationPage,
-    Fav
+    Fav,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpModule,
     IonicModule.forRoot(MyApp, links)
   ],
   bootstrap: [IonicApp],
@@ -53,7 +56,8 @@ var links = [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserService
+    UserService,
+
   ]
 })
 export class AppModule {}
