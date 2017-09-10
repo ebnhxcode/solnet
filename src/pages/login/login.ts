@@ -30,7 +30,7 @@ export class LoginPage{
         private http: Http,
     ){
         //this.http = http;
-
+        //let url: string = 'https://jsonplaceholder.typicode.com/posts';
         let url: string = 'https://jsonplaceholder.typicode.com/posts';
 
         //Opcion 1
