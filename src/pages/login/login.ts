@@ -32,14 +32,14 @@ export class LoginPage{
         //Opcion 3 - POST
          var link = 'https://201.238.235.30/fmi/rest/api/auth/Tasks_FMAngular';
          let headers = new Headers({'Content-Type': 'application/json'});
-         var myData = JSON.stringify({
+         let options = new RequestOptions({ headers: headers });
+         var myData = {
             user:"nuevo",
             password:"1234",
             layout:"prueba"
-         });
+         };
          
-         this.http.post(link, myData, {headers: headers})
-         .map(res => res.json())
+         this.http.post(link, myData, options)
          .subscribe(data => {
              //this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
              console.log(data);
@@ -72,7 +72,7 @@ export class LoginPage{
             'password':'1234',
             'layout':'prueba'
         };
-        
+
         //Opcion 1 - POST
         this.http.post(url_login, body, {headers: headers})
         .map(response => response.json())
