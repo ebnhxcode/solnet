@@ -6,7 +6,7 @@ import {
     NavController
 } from 'ionic-angular';
 import { UserService } from '../../services/mocks/user.service';
-import { Http, /*Response*/ } from '@angular/http';
+import { Http, Headers, RequestOptions /*Response*/ } from '@angular/http';
 
 
 import 'rxjs/add/operator/do';
@@ -29,16 +29,71 @@ export class LoginPage{
         private userService:UserService,
         private http: Http,
     ){
-        //this.http = http;
-        //let url: string = 'https://jsonplaceholder.typicode.com/posts';
-        let url: string = 'https://jsonplaceholder.typicode.com/posts';
+        //Opcion 3 - POST
+         var link = 'https://201.238.235.30/fmi/rest/api/auth/Tasks_FMAngular';
+         let headers = new Headers({'Content-Type': 'application/json'});
+         var myData = JSON.stringify({
+            user:"nuevo",
+            password:"1234",
+            layout:"prueba"
+         });
+         
+         this.http.post(link, myData, {headers: headers})
+         .map(res => res.json())
+         .subscribe(data => {
+             //this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
+             console.log(data);
+         }, error => {
+         console.log("Oooops!");
+         });
 
-        //Opcion 1
+       /*
+        //Opcion 2 - POST
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+        let url_login="https://201.238.235.30/fmi/rest/api/auth/Tasks_FMAngular";
+        let body = JSON.stringify({
+            user:"nuevo",
+            password:"1234",
+            layout:"prueba"
+        });
+        this.http.post(url_login, body, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data=>{
+            console.log(data);
+        });
+        */
+
+
+        /*
+        let url_login: string = 'https://201.238.235.30/fmi/rest/api/auth/Tasks_FMAngular';
+        let body = {
+            'user':'nuevo',
+            'password':'1234',
+            'layout':'prueba'
+        };
+        
+        //Opcion 1 - POST
+        this.http.post(url_login, body, {headers: headers})
+        .map(response => response.json())
+        .subscribe(
+          response => console.log(response),
+          () => console.log('Authentication Complete')
+        );
+        */
+
+        /*
+        // Url para probar metodo GET con angular
+        //let url: string = 'https://jsonplaceholder.typicode.com/posts';
+        let url: string = 'https://201.238.235.30/fmi/rest/api/record/Tasks_FMAngular/prueba';
+
+        //Opcion 1 - GET
         this.http.get(url)
         .map(res => res.json())
         .subscribe(data => {
             console.log(data);
         });
+        */
 
         /*
         this.http.post('http://localhost:3001/sessions/create', body, { headers: headers })
@@ -50,7 +105,7 @@ export class LoginPage{
         );
         */
 
-        //Opcion 2
+        //Opcion 2 - GET
         /*
         this.http.get(url)
         .do(res => res.json()).
@@ -62,10 +117,6 @@ export class LoginPage{
 
     ngOnInit(){
         console.log("arranco el init");
-
-
-
-
     }
 
 	login = ():void=>{
