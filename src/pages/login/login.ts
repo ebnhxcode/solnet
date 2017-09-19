@@ -29,18 +29,27 @@ export class LoginPage{
 		private userService:UserService,
 		private http: Http,
 	){
+
+
 		//Opcion 3 - POST
 		var link = 'https://201.238.235.30/fmi/rest/api/auth/Tasks_FMAngular';
+		/*
 		let headers = new Headers({
+			//'Access-Control-Allow-Origin': 'https://201.238.235.30',
+			//'Access-Control-Allow-Credentials': 'true',
+			//'Access-Control-Allow-Methods': 'GET, POST, PUT',
+			//'Access-Control-Allow-Headers': 'Content-Type',
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
-			'Access-Control-Allow-Origin': 'https://201.238.235.30',
-			'Access-Control-Allow-Credentials': 'true',
-			'Access-Control-Allow-Methods': 'GET, POST, PUT',
-			'Access-Control-Allow-Headers': 'Content-Type',
 		});
+		*/
+
+		var headers = new Headers();
+    	headers.append("Accept", 'application/json');
+    	headers.append('Content-Type', 'application/json');
 
 		let options = new RequestOptions({ headers: headers });
+		
 		var myData = {
 			user:"nuevo",
 			password:"1234",
