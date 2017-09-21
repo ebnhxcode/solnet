@@ -30,7 +30,46 @@ export class LoginPage{
 		private http: Http,
 	){
 
+		//Opcion 4 Final - POST
+		var base_uri = 'https://201.238.235.30/';
 
+		var service_data = {
+			'solution'	: 'Tasks_FMAngular',
+			'layout'	: 'prueba',
+			'verify'	: false
+		};
+
+		var uri_stuff = {
+			'login' 	: 'fmi/rest/api/auth/:solution',
+			'logout' 	: 'fmi/rest/api/auth/:solution',
+			'create' 	: 'fmi/rest/api/record/:solution/:layout',
+			'delete' 	: 'fmi/rest/api/record/:solution/:layout/:recordId',
+			'edit' 		: 'fmi/rest/api/record/:solution/:layout/:recordId',
+			'get' 		: 'fmi/rest/api/record/:solution/:layout/:recordId',
+			'getAll' 	: 'fmi/rest/api/record/:solution/:layout',
+		};
+
+		var json_auth = {
+			'json' : {
+				user:"nuevo",
+				password:"1234",
+				layout:"prueba"
+			}
+		};
+
+		var headers = new Headers();
+    		headers.append("Accept", 'application/json');
+    		headers.append('Content-Type', 'application/json');
+
+		var options = new RequestOptions({ headers: headers });
+		
+		this.http.post(base_uri + uri_stuff.login.replace(':solution', service_data.solution) , json_auth, options)
+			.map(response => response.json())
+			.subscribe( response => console.log(response), () => console.log('Authentication Complete') );
+
+
+
+		/*
 		//Opcion 3 - POST
 		var link = 'https://201.238.235.30/fmi/rest/api/auth/Tasks_FMAngular';
 		/*
@@ -42,7 +81,7 @@ export class LoginPage{
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
 		});
-		*/
+		
 
 		var headers = new Headers();
     	headers.append("Accept", 'application/json');
@@ -51,19 +90,21 @@ export class LoginPage{
 		let options = new RequestOptions({ headers: headers });
 		
 		var myData = {
-			user:"nuevo",
-			password:"1234",
-			layout:"prueba"
+			'json' : {
+				user:"nuevo",
+				password:"1234",
+				layout:"prueba"
+			}
 		};
 		 
 		this.http.post(link, myData, options)
-		.subscribe(data => {
-			//this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
-			console.log(data);
-		}, error => {
-			console.log("Oooops!");
-		});
+			.map(response => response.json())
+			.subscribe(
+		  		response => console.log(response),
+		  		() => console.log('Authentication Complete')
+			);
 
+		*/
 		/*
 		//Opcion 2 - POST
 		let headers = new Headers({'Content-Type': 'application/json'});
