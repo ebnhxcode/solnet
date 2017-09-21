@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Formulario</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="myForm" (ngSubmit)="saveData()">
+    <ion-list>
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-label stacked>Nombre:</ion-label>
+        <ion-input formControlName="nombre" type="text" placeholder="Nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-label stacked>Apellido Paterno:</ion-label>
+        <ion-input formControlName="apellido_p" type="text" placeholder="Apellido Paterno"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-label stacked>Apellido Materno:</ion-label>
+        <ion-input formControlName="apellido_m" type="text" placeholder="Apellido Materno"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="mail" item-left></ion-icon>
+        <ion-label stacked>Correo electronico:</ion-label>
+        <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-label stacked>Fono:</ion-label>
+        <ion-input formControlName="fono" type="text" placeholder="Telefono"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-label stacked>Fecha de nacimiento:</ion-label>
+        <ion-datetime formControlName="dateBirth" displayFormat="MM-DD-YYYY" placeholder="MM-DD-YYY"></ion-datetime>
+      </ion-item>
+      
+      
+    </ion-list>
+   <!--  <div padding>
+      <button ion-button block type="submit" [disabled]="!myForm.valid">Guardar</button>
+    </div> -->
+  </form>
+</ion-content>
