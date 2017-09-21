@@ -30,14 +30,15 @@ export class LoginPage{
 		private http: Http,
 	){
 
-		var url = 'http://solnetjson.grown.cl/test';
+		//var url = 'http://solnetjson.grown.cl/test/connection';
+		var url = 'http://local.solnetjson/test/connection';
 
 		this.http.get(url)
 		.map(res => res.json())
 		.subscribe(data => {
 			console.log(data);
 		});
-		
+
 		/*
 		//Opcion 4 Final - POST
 		var base_uri = 'https://201.238.235.30/';

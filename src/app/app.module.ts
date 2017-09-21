@@ -7,6 +7,7 @@ import { NotificationPage } from '../pages/notification/notification';
 import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { MyFormPage } from '../pages/formulario/formulario';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
@@ -37,6 +38,7 @@ var links = [
     LoginPage,
     VerNotificationPage,
     Fav,
+    MyFormPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -51,7 +53,8 @@ var links = [
     TabsPage,
     LoginPage,
     VerNotificationPage,
-    Fav
+    Fav,
+    MyFormPage
   ],
   providers: [
     StatusBar,
