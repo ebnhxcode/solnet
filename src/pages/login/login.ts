@@ -30,6 +30,15 @@ export class LoginPage{
 		private http: Http,
 	){
 
+		var url = 'http://solnetjson.grown.cl/test';
+
+		this.http.get(url)
+		.map(res => res.json())
+		.subscribe(data => {
+			console.log(data);
+		});
+		
+		/*
 		//Opcion 4 Final - POST
 		var base_uri = 'https://201.238.235.30/';
 
@@ -56,16 +65,33 @@ export class LoginPage{
 				layout:"prueba"
 			}
 		};
-
+		*/
+		/*
 		var headers = new Headers();
     		headers.append("Accept", 'application/json');
     		headers.append('Content-Type', 'application/json');
-
+    		headers.append('Access-Control-Allow-Origin', 'https://201.238.235.30/');
+    		//headers.append('Access-Control-Allow-Origin', '*');
+    		headers.append('Access-Control-Allow-Methods', 'OPTIONS, GET, HEAD, POST, DELETE');
+			headers.append('Access-Control-Allow-Credentials', 'true');
+    	/*
+		var headers = new Headers({
+			'Access-Control-Allow-Origin': 'https://201.238.235.30/',
+			'Access-Control-Allow-Credentials': 'true',
+			'Access-Control-Allow-Methods': 'OPTIONS',
+			'Access-Control-Allow-Headers': 'Content-Type, Accept',
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		});
+		*/
+		/*
 		var options = new RequestOptions({ headers: headers });
 		
 		this.http.post(base_uri + uri_stuff.login.replace(':solution', service_data.solution) , json_auth, options)
 			.map(response => response.json())
 			.subscribe( response => console.log(response), () => console.log('Authentication Complete') );
+
+			*/
 
 
 
